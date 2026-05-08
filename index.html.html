@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MageCat Games</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #07060f;
+    --bg2: #0d0b1a;
+    --bg3: #130f22;
+    --accent: #a855f7;
+    --accent2: #7c3aed;
+    --accent3: #06b6d4;
+    --text: #f1f0f8;
+    --muted: #8b83a8;
+    --card: #130f22;
+    --border: rgba(168,85,247,0.2);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* STARS */
+  .stars-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle var(--d,3s) var(--delay,0s) infinite alternate; }
+  @keyframes twinkle { from{opacity:.1} to{opacity:.8} }
+
+  /* NAVBAR */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(7,6,15,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo-wrap { display:flex; align-items:center; gap:14px; text-decoration:none; }
+  .logo-box {
+    width:44px; height:44px;
+    border:2px solid var(--accent); border-radius:8px;
+    background: linear-gradient(135deg,#1e0a3c,#0a0518);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Orbitron',sans-serif; font-size:16px; font-weight:900;
+    color:var(--accent); position:relative; overflow:hidden;
+  }
+  .logo-box::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(168,85,247,.15),transparent); }
+  .logo-text { font-family:'Orbitron',sans-serif; font-size:15px; font-weight:700; color:var(--text); letter-spacing:1px; }
+  .logo-text span { color:var(--accent); }
+  .nav-right { display:flex; align-items:center; gap:2rem; }
+  nav ul { display:flex; gap:2rem; list-style:none; }
+  nav ul a {
+    color:var(--muted); text-decoration:none;
+    font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:600;
+    letter-spacing:1.5px; text-transform:uppercase; transition:color .2s;
+  }
+  nav ul a:hover { color:var(--accent); }
+
+  /* LANG TOGGLE */
+  .lang-toggle {
+    display:flex; align-items:center;
+    background: rgba(168,85,247,0.08);
+    border:1px solid var(--border);
+    border-radius:6px; overflow:hidden;
+  }
+  .lang-btn {
+    padding: 6px 14px;
+    font-family:'Orbitron',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:1px; color:var(--muted);
+    background:transparent; border:none; cursor:pointer;
+    transition: background .2s, color .2s;
+  }
+  .lang-btn.active { background:var(--accent); color:#fff; }
+  .lang-btn:not(.active):hover { color:var(--accent); }
+
+  .nav-cta {
+    background:linear-gradient(135deg,var(--accent2),var(--accent));
+    color:white !important; padding:8px 20px; border-radius:6px; font-weight:700 !important;
+  }
+
+  /* HERO */
+  .hero {
+    position:relative; min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:7rem 2rem 4rem; z-index:1; overflow:hidden;
+  }
+  .hero-glow { position:absolute; width:800px; height:800px; border-radius:50%; background:radial-gradient(ellipse,rgba(124,58,237,.15) 0%,transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .hero-glow2 { position:absolute; width:400px; height:400px; border-radius:50%; background:radial-gradient(ellipse,rgba(6,182,212,.1) 0%,transparent 70%); top:30%; left:70%; pointer-events:none; }
+  .badge { display:inline-flex; align-items:center; gap:8px; background:rgba(168,85,247,.1); border:1px solid rgba(168,85,247,.3); border-radius:100px; padding:6px 16px; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; animation:fadeUp .6s ease both; }
+  .badge-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.5)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  .hero h1 { font-family:'Orbitron',sans-serif; font-size:clamp(2.4rem,6vw,5rem); font-weight:900; line-height:1.1; letter-spacing:-1px; margin-bottom:1.5rem; animation:fadeUp .7s .1s ease both; }
+  .hero h1 .line2 { display:block; background:linear-gradient(90deg,var(--accent),var(--accent3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero p { font-size:1.1rem; color:var(--muted); max-width:540px; margin:0 auto 2.5rem; font-weight:400; animation:fadeUp .7s .2s ease both; }
+  .hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation:fadeUp .7s .3s ease both; }
+  .btn-primary { background:linear-gradient(135deg,var(--accent2),var(--accent)); color:white; padding:14px 32px; border-radius:8px; text-decoration:none; font-family:'Orbitron',sans-serif; font-size:13px; font-weight:700; letter-spacing:1px; transition:transform .2s,box-shadow .2s; box-shadow:0 0 30px rgba(168,85,247,.25); border:none; cursor:pointer; display:inline-block; }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 40px rgba(168,85,247,.4); }
+  .btn-secondary { background:transparent; color:var(--text); padding:14px 32px; border-radius:8px; text-decoration:none; font-family:'Orbitron',sans-serif; font-size:13px; font-weight:700; letter-spacing:1px; border:1px solid var(--border); transition:border-color .2s,color .2s; }
+  .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
+
+  .hero-logo-big { margin:3.5rem auto 0; width:180px; height:180px; border:2px solid rgba(168,85,247,.4); border-radius:28px; background:linear-gradient(135deg,#1a0a35,#0a0518); display:flex; align-items:center; justify-content:center; font-size:64px; position:relative; overflow:hidden; animation:fadeUp .7s .4s ease both; }
+  .hero-logo-big::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(168,85,247,.1),rgba(6,182,212,.05)); }
+  .hero-logo-big .sub-text { position:absolute; bottom:14px; left:0; right:0; text-align:center; font-size:9px; letter-spacing:3px; color:var(--muted); font-family:'Orbitron',sans-serif; font-weight:700; }
+  .corner { position:absolute; width:16px; height:16px; border-color:var(--accent); border-style:solid; opacity:.6; }
+  .c-tl{top:8px;left:8px;border-width:2px 0 0 2px} .c-tr{top:8px;right:8px;border-width:2px 2px 0 0}
+  .c-bl{bottom:8px;left:8px;border-width:0 0 2px 2px} .c-br{bottom:8px;right:8px;border-width:0 2px 2px 0}
+
+  .scroll-ind { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--muted); font-size:11px; letter-spacing:2px; text-transform:uppercase; animation:fadeUp 1s 1s ease both; }
+  .scroll-line { width:1px; height:48px; background:linear-gradient(to bottom,var(--accent),transparent); animation:scrollLine 1.5s infinite; }
+  @keyframes scrollLine { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+  /* STATS */
+  .stats { position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .stat-item { background:var(--bg); padding:2.5rem; text-align:center; }
+  .stat-num { font-family:'Orbitron',sans-serif; font-size:2.8rem; font-weight:900; background:linear-gradient(135deg,var(--accent),var(--accent3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:.4rem; }
+  .stat-label { font-size:13px; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; font-weight:600; }
+
+  /* SECTION */
+  .section-wrap { position:relative; z-index:1; padding:6rem 3rem; max-width:1200px; margin:0 auto; }
+  .section-label { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:.75rem; }
+  .section-title { font-family:'Orbitron',sans-serif; font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:900; line-height:1.15; margin-bottom:1rem; }
+  .section-sub { color:var(--muted); font-size:1rem; max-width:520px; font-weight:400; margin-bottom:3rem; }
+
+  /* GAMES */
+  .games-scroll-wrap { position:relative; z-index:1; background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .games-track { display:flex; gap:1.5rem; padding:0 3rem 3rem; overflow-x:auto; scrollbar-width:none; }
+  .games-track::-webkit-scrollbar { display:none; }
+  .game-card { flex:0 0 300px; background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; transition:transform .3s,border-color .3s; cursor:pointer; }
+  .game-card:hover { transform:translateY(-8px); border-color:var(--accent); }
+  .game-card-thumb { width:100%; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; font-size:60px; position:relative; overflow:hidden; }
+  .game-card-thumb::after { content:''; position:absolute; bottom:0; left:0; right:0; height:60px; background:linear-gradient(to bottom,transparent,var(--card)); }
+  .game-card-body { padding:1.25rem; }
+  .game-card-tag { display:inline-block; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent); background:rgba(168,85,247,.1); border:1px solid rgba(168,85,247,.2); border-radius:4px; padding:3px 8px; margin-bottom:.5rem; }
+  .game-card-title { font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:700; margin-bottom:.4rem; }
+  .game-card-desc { font-size:13px; color:var(--muted); line-height:1.5; font-weight:400; }
+  .game-card-footer { display:flex; align-items:center; justify-content:space-between; margin-top:1rem; padding-top:.75rem; border-top:1px solid var(--border); }
+  .platforms { display:flex; gap:6px; }
+  .platform-pill { font-size:10px; font-weight:600; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:4px; padding:3px 8px; color:var(--muted); }
+  .play-btn { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--accent2),var(--accent)); display:flex; align-items:center; justify-content:center; font-size:11px; color:white; transition:transform .2s; }
+  .game-card:hover .play-btn { transform:scale(1.15); }
+
+  /* ABOUT */
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+  .about-logo-box { width:100%; aspect-ratio:1; max-width:360px; margin:0 auto; background:var(--bg3); border:1px solid var(--border); border-radius:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; position:relative; overflow:hidden; }
+  .about-logo-box::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:conic-gradient(from 0deg,transparent 0deg,rgba(168,85,247,.05) 60deg,transparent 120deg); animation:spin 10s linear infinite; }
+  @keyframes spin { to{transform:rotate(360deg)} }
+  .about-logo-inner { width:120px; height:120px; background:linear-gradient(135deg,#1a0a35,#0a0518); border:2px solid rgba(168,85,247,.5); border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:44px; position:relative; z-index:1; }
+  .about-logo-name { font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:700; color:var(--text); letter-spacing:1px; position:relative; z-index:1; }
+  .about-logo-name span { color:var(--accent); }
+  .feature-list { list-style:none; margin-top:1.5rem; }
+  .feature-list li { display:flex; align-items:flex-start; gap:12px; padding:.75rem 0; border-bottom:1px solid rgba(168,85,247,.08); }
+  .feature-list li:last-child { border-bottom:none; }
+  .feat-icon { width:36px; height:36px; min-width:36px; border-radius:8px; background:rgba(168,85,247,.1); border:1px solid rgba(168,85,247,.2); display:flex; align-items:center; justify-content:center; font-size:16px; margin-top:2px; }
+  .feat-text strong { display:block; font-family:'Orbitron',sans-serif; font-size:13px; font-weight:700; margin-bottom:2px; color:var(--text); }
+  .feat-text p { font-size:13px; color:var(--muted); font-weight:400; }
+
+  /* CONTACT */
+  .contact-wrap { position:relative; z-index:1; background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:6rem 3rem; text-align:center; overflow:hidden; }
+  .contact-glow { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 100%,rgba(168,85,247,.1) 0%,transparent 60%); pointer-events:none; }
+  .contact-form { max-width:480px; margin:0 auto; display:flex; flex-direction:column; gap:1rem; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .form-input { background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:8px; padding:12px 16px; color:var(--text); font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:400; outline:none; transition:border-color .2s; width:100%; }
+  .form-input:focus { border-color:var(--accent); }
+  .form-input::placeholder { color:var(--muted); }
+  .form-textarea { min-height:120px; resize:vertical; }
+
+  /* FOOTER */
+  footer { position:relative; z-index:1; background:var(--bg); border-top:1px solid var(--border); padding:2.5rem 3rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+  .footer-left { display:flex; align-items:center; gap:12px; }
+  .footer-logo-box { width:36px; height:36px; border:1px solid var(--border); border-radius:6px; background:linear-gradient(135deg,#1a0a35,#0a0518); display:flex; align-items:center; justify-content:center; font-family:'Orbitron',sans-serif; font-size:13px; font-weight:900; color:var(--accent); }
+  .footer-brand { font-family:'Orbitron',sans-serif; font-size:13px; font-weight:700; color:var(--muted); }
+  .footer-brand span { color:var(--accent); }
+  .footer-copy { font-size:13px; color:var(--muted); font-weight:400; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a { font-size:12px; color:var(--muted); text-decoration:none; letter-spacing:1px; text-transform:uppercase; font-weight:600; transition:color .2s; }
+  .footer-links a:hover { color:var(--accent); }
+
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem;}
+    nav ul{display:none;}
+    .section-wrap{padding:4rem 1.5rem;}
+    .stats{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    footer{flex-direction:column;text-align:center;}
+    .footer-links{justify-content:center;}
+    .games-track{padding:0 1.5rem 2rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="stars-bg" id="stars"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="logo-wrap">
+    <div class="logo-box">MC</div>
+    <span class="logo-text">Mage<span>Cat</span> Games</span>
+  </a>
+  <div class="nav-right">
+    <ul>
+      <li><a href="#games" data-i18n="nav_games">Games</a></li>
+      <li><a href="#about" data-i18n="nav_about">About</a></li>
+      <li><a href="#contact" class="nav-cta" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('tr')">TR</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div>
+    <div class="badge"><span class="badge-dot"></span><span data-i18n="hero_badge">Independent Game Studio</span></div>
+    <h1>
+      <span data-i18n="hero_title1">Magical Worlds</span><br>
+      <span class="line2" data-i18n="hero_title2">We Create</span>
+    </h1>
+    <p data-i18n="hero_sub">We craft innovative, fun and visually stunning game experiences for PC and mobile platforms.</p>
+    <div class="hero-btns">
+      <a href="#games" class="btn-primary" data-i18n="hero_cta1">Explore Games</a>
+      <a href="#about" class="btn-secondary" data-i18n="hero_cta2">Who Are We?</a>
+    </div>
+    <div class="hero-logo-big">
+      <div class="corner c-tl"></div><div class="corner c-tr"></div>
+      <div class="corner c-bl"></div><div class="corner c-br"></div>
+      <span style="position:relative;z-index:1">🐱</span>
+      <span class="sub-text">MAGECAT GAMES</span>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">12+</div>
+    <div class="stat-label" data-i18n="stat1">Games Live</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">500K+</div>
+    <div class="stat-label" data-i18n="stat2">Active Players</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">4.8★</div>
+    <div class="stat-label" data-i18n="stat3">Average Rating</div>
+  </div>
+</div>
+
+<!-- GAMES -->
+<div class="games-scroll-wrap" id="games">
+  <div class="section-wrap" style="padding-bottom:1rem">
+    <div class="section-label" data-i18n="games_label">— Portfolio</div>
+    <div class="section-title" data-i18n="games_title">Explore Our<br>Games</div>
+    <p class="section-sub" data-i18n="games_sub">We deliver fun experiences across genres and platforms. Every game is crafted with care.</p>
+  </div>
+  <div class="games-track">
+    <div class="game-card">
+      <div class="game-card-thumb" style="background:linear-gradient(135deg,#1a0a35,#2d0a5c)">🗡️</div>
+      <div class="game-card-body">
+        <span class="game-card-tag">RPG</span>
+        <div class="game-card-title">Shadow Rune</div>
+        <div class="game-card-desc" data-i18n="game1_desc">Fight as a sorcerer in a dark world, level up your skills and claim legendary armor.</div>
+        <div class="game-card-footer">
+          <div class="platforms"><span class="platform-pill">iOS</span><span class="platform-pill">Android</span></div>
+          <div class="play-btn">▶</div>
+        </div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-thumb" style="background:linear-gradient(135deg,#0a1a35,#0a2d5c)">⚡</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" data-i18n="tag_strategy">Strategy</span>
+        <div class="game-card-title">Storm Keep</div>
+        <div class="game-card-desc" data-i18n="game2_desc">Build castles, command armies and repel enemy assaults. Test your leadership skills.</div>
+        <div class="game-card-footer">
+          <div class="platforms"><span class="platform-pill">PC</span><span class="platform-pill">iOS</span></div>
+          <div class="play-btn">▶</div>
+        </div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-thumb" style="background:linear-gradient(135deg,#0a350a,#1a5c0a)">🌿</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" data-i18n="tag_puzzle">Puzzle</span>
+        <div class="game-card-title">Mana Garden</div>
+        <div class="game-card-desc" data-i18n="game3_desc">Manage an enchanted garden, grow rare plants and brew powerful potions. Hours of adventure.</div>
+        <div class="game-card-footer">
+          <div class="platforms"><span class="platform-pill">Android</span></div>
+          <div class="play-btn">▶</div>
+        </div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-thumb" style="background:linear-gradient(135deg,#35150a,#5c2a0a)">🔥</div>
+      <div class="game-card-body">
+        <span class="game-card-tag" data-i18n="tag_action">Action</span>
+        <div class="game-card-title">Ember Clash</div>
+        <div class="game-card-desc" data-i18n="game4_desc">Compete in real-time battles with friends and defeat enemies using powerful characters.</div>
+        <div class="game-card-footer">
+          <div class="platforms"><span class="platform-pill">PC</span><span class="platform-pill">iOS</span><span class="platform-pill">Android</span></div>
+          <div class="play-btn">▶</div>
+        </div>
+      </div>
+    </div>
+    <div class="game-card">
+      <div class="game-card-thumb" style="background:linear-gradient(135deg,#1a1a0a,#3a3a10)">⭐</div>
+      <div class="game-card-body">
+        <span class="game-card-tag">Idle</span>
+        <div class="game-card-title">Star Forge</div>
+        <div class="game-card-desc" data-i18n="game5_desc">Build a star factory in space, manage resources and conquer the galaxy. Play for hours.</div>
+        <div class="game-card-footer">
+          <div class="platforms"><span class="platform-pill">PC</span></div>
+          <div class="play-btn">▶</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about">
+  <div class="section-wrap">
+    <div class="about-grid">
+      <div>
+        <div class="about-logo-box">
+          <div class="about-logo-inner">🐱</div>
+          <div class="about-logo-name">Mage<span>Cat</span> Games</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label" data-i18n="about_label">— About Us</div>
+        <h2 class="section-title" data-i18n="about_title">Games Made<br>With Passion</h2>
+        <p class="section-sub" data-i18n="about_sub">At MageCat Games we treat every game like a spell — original ideas, meticulous design and a player-first mindset.</p>
+        <ul class="feature-list">
+          <li>
+            <div class="feat-icon">🎮</div>
+            <div class="feat-text">
+              <strong data-i18n="feat1_title">Player-Centric Design</strong>
+              <p data-i18n="feat1_desc">Every mechanic is tested to maximize the enjoyment of our players.</p>
+            </div>
+          </li>
+          <li>
+            <div class="feat-icon">✨</div>
+            <div class="feat-text">
+              <strong data-i18n="feat2_title">Magical Visuals</strong>
+              <p data-i18n="feat2_desc">Original art direction ensures every game offers a visually stunning world.</p>
+            </div>
+          </li>
+          <li>
+            <div class="feat-icon">🚀</div>
+            <div class="feat-text">
+              <strong data-i18n="feat3_title">Multi-Platform Support</strong>
+              <p data-i18n="feat3_desc">Optimized games running smoothly on PC, iOS and Android.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+  <div class="contact-glow"></div>
+  <div class="section-label" data-i18n="contact_label">— Contact</div>
+  <h2 class="section-title" style="max-width:500px;margin:0 auto .75rem" data-i18n="contact_title">Let's Build<br>Something Together</h2>
+  <p class="section-sub" style="max-width:420px;margin:0 auto 2.5rem" data-i18n="contact_sub">Reach out for projects, collaborations or any questions.</p>
+  <div class="contact-form">
+    <div class="form-row">
+      <input type="text" class="form-input" data-placeholder-i18n="form_name" placeholder="Your Name">
+      <input type="email" class="form-input" data-placeholder-i18n="form_email" placeholder="Email">
+    </div>
+    <input type="text" class="form-input" data-placeholder-i18n="form_subject" placeholder="Subject">
+    <textarea class="form-input form-textarea" data-placeholder-i18n="form_message" placeholder="Your message..."></textarea>
+    <button class="btn-primary" data-i18n="form_send">Send →</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="footer-logo-box">MC</div>
+    <span class="footer-brand">Mage<span>Cat</span> Games</span>
+  </div>
+  <span class="footer-copy" id="footer-copy">© 2026 MageCat Games. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="#games" data-i18n="nav_games">Games</a>
+    <a href="#about" data-i18n="nav_about">About</a>
+    <a href="#contact" data-i18n="nav_contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  en: {
+    nav_games:"Games", nav_about:"About", nav_contact:"Contact",
+    hero_badge:"Independent Game Studio",
+    hero_title1:"Magical Worlds", hero_title2:"We Create",
+    hero_sub:"We craft innovative, fun and visually stunning game experiences for PC and mobile platforms.",
+    hero_cta1:"Explore Games", hero_cta2:"Who Are We?",
+    stat1:"Games Live", stat2:"Active Players", stat3:"Average Rating",
+    games_label:"— Portfolio", games_title:"Explore Our<br>Games",
+    games_sub:"We deliver fun experiences across genres and platforms. Every game is crafted with care.",
+    tag_strategy:"Strategy", tag_puzzle:"Puzzle", tag_action:"Action",
+    game1_desc:"Fight as a sorcerer in a dark world, level up your skills and claim legendary armor.",
+    game2_desc:"Build castles, command armies and repel enemy assaults. Test your leadership skills.",
+    game3_desc:"Manage an enchanted garden, grow rare plants and brew powerful potions. Hours of adventure.",
+    game4_desc:"Compete in real-time battles with friends and defeat enemies using powerful characters.",
+    game5_desc:"Build a star factory in space, manage resources and conquer the galaxy. Play for hours.",
+    about_label:"— About Us", about_title:"Games Made<br>With Passion",
+    about_sub:"At MageCat Games we treat every game like a spell — original ideas, meticulous design and a player-first mindset.",
+    feat1_title:"Player-Centric Design", feat1_desc:"Every mechanic is tested to maximize the enjoyment of our players.",
+    feat2_title:"Magical Visuals", feat2_desc:"Original art direction ensures every game offers a visually stunning world.",
+    feat3_title:"Multi-Platform Support", feat3_desc:"Optimized games running smoothly on PC, iOS and Android.",
+    contact_label:"— Contact", contact_title:"Let's Build<br>Something Together",
+    contact_sub:"Reach out for projects, collaborations or any questions.",
+    form_name:"Your Name", form_email:"Email", form_subject:"Subject",
+    form_message:"Your message...", form_send:"Send →",
+    footer_copy:"© 2026 MageCat Games. All rights reserved."
+  },
+  tr: {
+    nav_games:"Oyunlar", nav_about:"Hakkımızda", nav_contact:"İletişim",
+    hero_badge:"Bağımsız Oyun Stüdyosu",
+    hero_title1:"Büyülü Dünyalar", hero_title2:"Yaratıyoruz",
+    hero_sub:"PC ve mobil platformlar için yenilikçi, eğlenceli ve görsel olarak etkileyici oyun deneyimleri tasarlıyoruz.",
+    hero_cta1:"Oyunları Keşfet", hero_cta2:"Biz Kimiz?",
+    stat1:"Oyun Yayında", stat2:"Aktif Oyuncu", stat3:"Ortalama Puan",
+    games_label:"— Portföy", games_title:"Oyunlarımızı<br>Keşfedin",
+    games_sub:"Farklı türlerde ve platformlarda eğlenceli deneyimler sunuyoruz. Her oyun özenle tasarlanmıştır.",
+    tag_strategy:"Strateji", tag_puzzle:"Bulmaca", tag_action:"Aksiyon",
+    game1_desc:"Karanlık bir dünyada büyücü olarak savaş, yeteneklerini geliştir, efsanevi zırhlar kazan.",
+    game2_desc:"Kale inşa et, ordu yönet, düşman saldırılarını geri püskürt. Liderlik becerini test et.",
+    game3_desc:"Büyülü bir bahçeyi yönet, bitkileri yetiştir, iksirler hazırla. Saatlerce sürecek macera.",
+    game4_desc:"Gerçek zamanlı savaşlarda arkadaşlarınla rekabet et, güçlü karakterlerle düşmanları yen.",
+    game5_desc:"Uzayda bir yıldız fabrikası kur, kaynakları yönet, galaksiyi fethet. Saatlerce oyna.",
+    about_label:"— Hakkımızda", about_title:"Tutkuyla Üretilen<br>Oyunlar",
+    about_sub:"MageCat Games olarak her oyuna bir büyü gibi yaklaşıyoruz — orijinal fikirler, titiz tasarım ve oyuncuyu önde tutan bir bakış açısı.",
+    feat1_title:"Oyuncu Odaklı Tasarım", feat1_desc:"Her mekanik, oyuncuların zevkini en üst düzeye çıkarmak için test edilir.",
+    feat2_title:"Büyülü Görseller", feat2_desc:"Özgün sanat yönetimi ile her oyun görsel olarak etkileyici bir dünya sunar.",
+    feat3_title:"Çok Platform Desteği", feat3_desc:"PC, iOS ve Android'de sorunsuz çalışan optimize edilmiş oyunlar.",
+    contact_label:"— İletişim", contact_title:"Birlikte Bir Şeyler<br>Yapalım",
+    contact_sub:"Projeleriniz, iş birlikleri veya sorularınız için bize ulaşın.",
+    form_name:"Adınız", form_email:"E-posta", form_subject:"Konu",
+    form_message:"Mesajınız...", form_send:"Gönder →",
+    footer_copy:"© 2026 MageCat Games. Tüm hakları saklıdır."
+  }
+};
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  const s = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (s[k] !== undefined) el.innerHTML = s[k];
+  });
+  document.querySelectorAll('[data-placeholder-i18n]').forEach(el => {
+    const k = el.getAttribute('data-placeholder-i18n');
+    if (s[k] !== undefined) el.placeholder = s[k];
+  });
+  document.getElementById('footer-copy').textContent = s.footer_copy;
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang);
+  });
+}
+
+// Stars
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 150; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const sz = Math.random() * 2 + 0.5;
+  s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*3+2).toFixed(1)}s;--delay:${(Math.random()*4).toFixed(1)}s`;
+  starsEl.appendChild(s);
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>
