@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Merge - Privacy Policy | MageCat Games</title>
+<meta name="description" content="Privacy Policy for Sweet Merge by MageCat Games.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  :root{
+    --bg:#07060f;
+    --bg2:#0d0b1a;
+    --card:#130f22;
+    --accent:#a855f7;
+    --accent2:#7c3aed;
+    --accent3:#06b6d4;
+    --text:#f1f0f8;
+    --muted:#a29bb8;
+    --border:rgba(168,85,247,.22);
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Rajdhani',sans-serif;
+    line-height:1.72;
+    min-height:100vh;
+  }
+  .stars-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d,3s) var(--delay,0s) infinite alternate}
+  @keyframes twinkle{from{opacity:.08}to{opacity:.75}}
+
+  nav{
+    position:sticky;top:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1rem 3rem;
+    background:rgba(7,6,15,.92);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .logo-wrap{display:flex;align-items:center;gap:14px;text-decoration:none}
+  .logo-box{
+    width:44px;height:44px;border:2px solid var(--accent);border-radius:8px;
+    background:linear-gradient(135deg,#1e0a3c,#0a0518);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;color:var(--accent)
+  }
+  .logo-text{font-family:'Orbitron',sans-serif;font-size:15px;font-weight:700;color:var(--text);letter-spacing:1px}
+  .logo-text span{color:var(--accent)}
+  .nav-actions{display:flex;align-items:center;gap:12px}
+  .back-btn,.lang-btn{
+    border:1px solid var(--border);background:rgba(168,85,247,.07);color:var(--text);
+    border-radius:7px;padding:9px 15px;text-decoration:none;cursor:pointer;
+    font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:.5px
+  }
+  .back-btn:hover,.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .lang-btn.active{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;border-color:transparent}
+
+  .hero{
+    position:relative;z-index:1;
+    max-width:980px;margin:0 auto;padding:6rem 1.5rem 2rem;text-align:center;
+  }
+  .eyebrow{
+    display:inline-block;color:var(--accent);border:1px solid var(--border);
+    background:rgba(168,85,247,.08);border-radius:999px;padding:6px 14px;
+    text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:700;margin-bottom:1rem
+  }
+  h1{
+    font-family:'Orbitron',sans-serif;font-size:clamp(2.2rem,5vw,4.2rem);line-height:1.1;
+    background:linear-gradient(90deg,var(--text),var(--accent),var(--accent3));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    margin-bottom:1rem
+  }
+  .lead{max-width:760px;margin:0 auto;color:var(--muted);font-size:1.08rem}
+  .updated{margin-top:1.2rem;color:var(--muted);font-size:.95rem}
+
+  main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:2rem 1.5rem 5rem}
+  .policy-card{
+    background:linear-gradient(180deg,rgba(19,15,34,.96),rgba(13,11,26,.96));
+    border:1px solid var(--border);border-radius:18px;padding:clamp(1.3rem,3vw,2.4rem);
+    box-shadow:0 20px 70px rgba(0,0,0,.25)
+  }
+  section{padding:1.45rem 0;border-bottom:1px solid rgba(168,85,247,.10)}
+  section:last-child{border-bottom:none}
+  h2{
+    font-family:'Orbitron',sans-serif;font-size:1.15rem;color:var(--text);
+    margin-bottom:.65rem
+  }
+  p{color:#c8c2d7;margin:.45rem 0}
+  ul{margin:.6rem 0 .3rem 1.25rem;color:#c8c2d7}
+  li{margin:.35rem 0}
+  strong{color:var(--text)}
+  a{color:#c084fc}
+  .notice{
+    margin:1.1rem 0;padding:1rem 1.1rem;border-radius:10px;
+    border:1px solid rgba(6,182,212,.25);background:rgba(6,182,212,.06);color:#c9eef5
+  }
+  footer{
+    position:relative;z-index:1;border-top:1px solid var(--border);
+    padding:2rem 1.5rem;text-align:center;color:var(--muted);font-size:.92rem
+  }
+  @media(max-width:700px){
+    nav{padding:1rem 1.1rem}
+    .logo-text{display:none}
+    .hero{padding-top:4rem}
+    .back-btn{padding:8px 11px}
+  }
+</style>
+</head>
+<body>
+<div class="stars-bg" id="stars"></div>
+
+<nav>
+  <a href="index.html" class="logo-wrap">
+    <div class="logo-box">MC</div>
+    <span class="logo-text">Mage<span>Cat</span> Games</span>
+  </a>
+  <div class="nav-actions">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
+    <a href="index.html" class="back-btn" id="back-link">← Home</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Sweet Merge</div>
+  <h1 id="title">Privacy Policy</h1>
+  <p class="lead" id="lead">This Privacy Policy explains how Sweet Merge handles information when you use the game.</p>
+  <p class="updated" id="updated"><strong>Last Updated:</strong> September 12, 2026</p>
+</header>
+
+<main>
+<div class="policy-card">
+
+<div class="notice" id="notice">
+  Sweet Merge may include advertising, in-app purchases and analytics. The exact third-party providers used by the current version of the game should also be reflected in the Google Play Data Safety form.
+</div>
+
+<div id="content-en">
+<section>
+  <h2>1. Information We Collect</h2>
+  <p>Sweet Merge does not require users to directly provide personal information such as a name, home address or phone number in order to play.</p>
+  <p>The game and third-party services integrated into it may automatically process limited technical and usage information, including:</p>
+  <ul>
+    <li>Device type, model, operating system and app version</li>
+    <li>Language and general device settings</li>
+    <li>Device or advertising identifiers where permitted</li>
+    <li>IP address and approximate location derived from network information</li>
+    <li>Gameplay activity, level progress, sessions and in-game interactions</li>
+    <li>Crash logs, diagnostic and performance information</li>
+    <li>Purchase status, product information and transaction-related identifiers</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. Analytics</h2>
+  <p>Sweet Merge uses analytics technologies to understand how players interact with the game and to improve gameplay, stability, balancing and performance.</p>
+  <p>Analytics services may process gameplay events, session information, device information, app version, crash data and anonymous or pseudonymous identifiers.</p>
+</section>
+
+<section>
+  <h2>3. Advertising</h2>
+  <p>Sweet Merge may display advertisements provided by third-party advertising partners.</p>
+  <p>Advertising providers may process advertising identifiers, device information, IP address, approximate location, ad impressions, clicks, interactions and app usage data for purposes such as ad delivery, measurement, fraud prevention and, where permitted, personalized advertising.</p>
+  <p>Where required by law, consent will be requested before information is used for personalized advertising.</p>
+</section>
+
+<section>
+  <h2>4. In-App Purchases</h2>
+  <p>Sweet Merge may offer optional digital products, virtual items, currencies or other content through in-app purchases.</p>
+  <p>Payments are processed through Google Play Billing or the applicable app store payment system. MageCat Games does not directly receive or store your full payment card or banking information.</p>
+  <p>Limited transaction information may be processed to deliver purchased content, validate purchases, restore eligible purchases, prevent fraud and provide support.</p>
+</section>
+
+<section>
+  <h2>5. Third-Party Services</h2>
+  <p>Sweet Merge may use third-party services for analytics, advertising, crash reporting, payment processing, game functionality, cloud services and app distribution.</p>
+  <p>These providers may process information according to their own privacy policies and terms. The exact services used may change as the game is updated.</p>
+  <p>Where applicable, the current providers and data practices will also be reflected in the Google Play Data Safety section.</p>
+</section>
+
+<section>
+  <h2>6. How We Use Information</h2>
+  <ul>
+    <li>Operate and maintain Sweet Merge</li>
+    <li>Provide gameplay features and purchased content</li>
+    <li>Display and measure advertisements</li>
+    <li>Analyze gameplay and improve the user experience</li>
+    <li>Diagnose crashes and technical issues</li>
+    <li>Prevent fraud, abuse and unauthorized activity</li>
+    <li>Provide customer support</li>
+    <li>Comply with applicable legal obligations</li>
+  </ul>
+</section>
+
+<section>
+  <h2>7. Data Sharing</h2>
+  <p>We do not sell personal information.</p>
+  <p>Limited information may be shared with trusted service providers where necessary for advertising, analytics, payments, crash reporting, hosting, platform services, security or legal compliance.</p>
+</section>
+
+<section>
+  <h2>8. Data Security</h2>
+  <p>We take reasonable technical and organizational measures designed to protect information processed through Sweet Merge. However, no electronic transmission or storage method can be guaranteed to be completely secure.</p>
+</section>
+
+<section>
+  <h2>9. Data Retention</h2>
+  <p>Information is retained only for as long as reasonably necessary for the purposes described in this Privacy Policy, unless a longer period is required by law. Third-party providers may retain data according to their own retention policies.</p>
+</section>
+
+<section>
+  <h2>10. User Rights and Data Deletion</h2>
+  <p>Depending on your country or region, you may have rights to request access to, correction of or deletion of personal information associated with you.</p>
+  <p>Sweet Merge does not require a traditional player account unless otherwise stated inside the game. You may contact us to request information about or deletion of data that may be associated with your use of the game.</p>
+  <p>Some records, including certain purchase or fraud-prevention records, may need to be retained where required by law or platform rules.</p>
+</section>
+
+<section>
+  <h2>11. Children's Privacy</h2>
+  <p>We take children's privacy seriously. Sweet Merge does not knowingly ask children to directly submit personal information through the game.</p>
+  <p>If the game is made available to children, we will take appropriate measures to comply with applicable laws and platform requirements relating to children and families.</p>
+</section>
+
+<section>
+  <h2>12. International Data Processing</h2>
+  <p>Some third-party service providers may process information on servers located outside your country of residence. Where applicable, such processing is handled in accordance with relevant legal requirements and the policies of those providers.</p>
+</section>
+
+<section>
+  <h2>13. Changes to This Privacy Policy</h2>
+  <p>We may update this Privacy Policy from time to time due to changes in Sweet Merge, third-party services, legal requirements or our data practices. The “Last Updated” date at the top of this page will be changed when this policy is updated.</p>
+</section>
+
+<section>
+  <h2>14. Contact Us</h2>
+  <p><strong>Game:</strong> Sweet Merge</p>
+  <p><strong>Developer:</strong> MageCat Games</p>
+  <p><strong>Country:</strong> Türkiye</p>
+  <p><strong>Email:</strong> <a href="mailto:YOUR_SUPPORT_EMAIL">YOUR_SUPPORT_EMAIL</a></p>
+</section>
+</div>
+
+<div id="content-tr" style="display:none">
+<section>
+  <h2>1. Topladığımız Bilgiler</h2>
+  <p>Sweet Merge, oyunu oynayabilmek için kullanıcılardan ad, ev adresi veya telefon numarası gibi kişisel bilgileri doğrudan vermelerini istemez.</p>
+  <p>Oyun ve oyuna entegre üçüncü taraf hizmetler aşağıdaki sınırlı teknik ve kullanım verilerini otomatik olarak işleyebilir:</p>
+  <ul>
+    <li>Cihaz türü, model, işletim sistemi ve uygulama sürümü</li>
+    <li>Dil ve genel cihaz ayarları</li>
+    <li>İzin verildiği durumlarda cihaz veya reklam tanımlayıcıları</li>
+    <li>IP adresi ve ağ bilgisinden türetilen yaklaşık konum</li>
+    <li>Oynanış etkinlikleri, bölüm ilerlemesi, oturumlar ve oyun içi etkileşimler</li>
+    <li>Çökme kayıtları, tanılama ve performans bilgileri</li>
+    <li>Satın alma durumu, ürün bilgileri ve işlemle ilgili tanımlayıcılar</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. Analitik</h2>
+  <p>Sweet Merge; oyuncuların oyunla nasıl etkileşim kurduğunu anlamak ve oynanışı, kararlılığı, dengeyi ve performansı geliştirmek için analitik teknolojileri kullanır.</p>
+</section>
+
+<section>
+  <h2>3. Reklamlar</h2>
+  <p>Sweet Merge, üçüncü taraf reklam sağlayıcıları tarafından sunulan reklamları gösterebilir.</p>
+  <p>Reklam sağlayıcıları; reklam sunumu, ölçüm, dolandırıcılık önleme ve izin verildiği durumlarda kişiselleştirilmiş reklamlar için reklam tanımlayıcıları, cihaz bilgileri, IP adresi, yaklaşık konum, reklam gösterimleri, tıklamalar ve uygulama kullanım verilerini işleyebilir.</p>
+</section>
+
+<section>
+  <h2>4. Uygulama İçi Satın Alımlar</h2>
+  <p>Sweet Merge; dijital ürünler, sanal öğeler, para birimleri veya diğer içerikleri uygulama içi satın alım yoluyla sunabilir.</p>
+  <p>Ödemeler Google Play Billing veya ilgili uygulama mağazasının ödeme sistemi üzerinden işlenir. MageCat Games, kullanıcıların tam kredi kartı veya banka bilgilerini doğrudan almaz ya da saklamaz.</p>
+</section>
+
+<section>
+  <h2>5. Üçüncü Taraf Hizmetler</h2>
+  <p>Sweet Merge; analitik, reklam, çökme raporlama, ödeme işleme, oyun işlevleri, bulut hizmetleri ve uygulama dağıtımı için üçüncü taraf hizmetlerden yararlanabilir.</p>
+  <p>Bu sağlayıcılar bilgileri kendi gizlilik politikaları ve şartlarına göre işleyebilir. Kullanılan hizmetler oyun güncellendikçe değişebilir.</p>
+</section>
+
+<section>
+  <h2>6. Bilgileri Nasıl Kullanıyoruz?</h2>
+  <ul>
+    <li>Sweet Merge'i çalıştırmak ve sürdürmek</li>
+    <li>Oyun özelliklerini ve satın alınan içerikleri sağlamak</li>
+    <li>Reklam göstermek ve reklam performansını ölçmek</li>
+    <li>Oynanışı analiz etmek ve kullanıcı deneyimini geliştirmek</li>
+    <li>Çökme ve teknik sorunları teşhis etmek</li>
+    <li>Dolandırıcılık ve kötüye kullanımı önlemek</li>
+    <li>Kullanıcı desteği sağlamak</li>
+    <li>Yasal yükümlülüklere uymak</li>
+  </ul>
+</section>
+
+<section>
+  <h2>7. Veri Paylaşımı</h2>
+  <p>Kişisel bilgileri satmıyoruz.</p>
+  <p>Sınırlı bilgiler; reklam, analitik, ödeme, çökme raporlama, barındırma, platform hizmetleri, güvenlik veya yasal gereklilikler için güvenilir hizmet sağlayıcılarla paylaşılabilir.</p>
+</section>
+
+<section>
+  <h2>8. Veri Güvenliği</h2>
+  <p>Sweet Merge üzerinden işlenen bilgileri korumak için makul teknik ve organizasyonel önlemler alıyoruz. Bununla birlikte hiçbir elektronik aktarım veya saklama yöntemi tamamen güvenli garanti edilemez.</p>
+</section>
+
+<section>
+  <h2>9. Veri Saklama</h2>
+  <p>Bilgiler yalnızca bu Gizlilik Politikasında açıklanan amaçlar için makul ölçüde gerekli olduğu sürece saklanır. Üçüncü taraf sağlayıcılar verileri kendi saklama politikalarına göre tutabilir.</p>
+</section>
+
+<section>
+  <h2>10. Kullanıcı Hakları ve Veri Silme</h2>
+  <p>Bulunduğunuz ülke veya bölgeye bağlı olarak kişisel verilerinize erişme, düzeltme veya silme talebinde bulunma hakkınız olabilir.</p>
+  <p>Sweet Merge, oyun içinde aksi belirtilmedikçe geleneksel bir oyuncu hesabı gerektirmez. Oyunun kullanımıyla ilişkili olabilecek veriler hakkında bilgi veya silme talebi için bizimle iletişime geçebilirsiniz.</p>
+</section>
+
+<section>
+  <h2>11. Çocukların Gizliliği</h2>
+  <p>Çocukların gizliliğini ciddiye alıyoruz. Sweet Merge, çocuklardan oyun üzerinden doğrudan kişisel bilgi vermelerini bilerek istemez.</p>
+</section>
+
+<section>
+  <h2>12. Uluslararası Veri İşleme</h2>
+  <p>Bazı üçüncü taraf hizmet sağlayıcıları bilgileri ikamet ettiğiniz ülkenin dışındaki sunucularda işleyebilir. Uygulanabilir olduğu durumlarda bu işlemler ilgili yasal gerekliliklere göre yürütülür.</p>
+</section>
+
+<section>
+  <h2>13. Bu Gizlilik Politikasındaki Değişiklikler</h2>
+  <p>Sweet Merge, üçüncü taraf hizmetler, yasal gereklilikler veya veri uygulamalarımız değiştiğinde bu Gizlilik Politikasını güncelleyebiliriz. Güncelleme yapıldığında sayfanın üst kısmındaki “Son Güncelleme” tarihi değiştirilir.</p>
+</section>
+
+<section>
+  <h2>14. İletişim</h2>
+  <p><strong>Oyun:</strong> Sweet Merge</p>
+  <p><strong>Geliştirici:</strong> MageCat Games</p>
+  <p><strong>Ülke:</strong> Türkiye</p>
+  <p><strong>E-posta:</strong> <a href="mailto:YOUR_SUPPORT_EMAIL">YOUR_SUPPORT_EMAIL</a></p>
+</section>
+</div>
+
+</div>
+</main>
+
+<footer>© 2026 MageCat Games. All rights reserved.</footer>
+
+<script>
+const starsEl = document.getElementById('stars');
+for (let i=0;i<120;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  const z=Math.random()*2+.5;
+  s.style.cssText=`width:${z}px;height:${z}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*3+2).toFixed(1)}s;--delay:${(Math.random()*4).toFixed(1)}s`;
+  starsEl.appendChild(s);
+}
+
+function setLang(lang){
+  const en = lang === 'en';
+  document.documentElement.lang = lang;
+  document.getElementById('content-en').style.display = en ? 'block' : 'none';
+  document.getElementById('content-tr').style.display = en ? 'none' : 'block';
+  document.getElementById('btn-en').classList.toggle('active', en);
+  document.getElementById('btn-tr').classList.toggle('active', !en);
+  document.getElementById('title').textContent = en ? 'Privacy Policy' : 'Gizlilik Politikası';
+  document.getElementById('lead').textContent = en
+    ? 'This Privacy Policy explains how Sweet Merge handles information when you use the game.'
+    : 'Bu Gizlilik Politikası, Sweet Merge oyununu kullandığınızda bilgilerin nasıl işlendiğini açıklar.';
+  document.getElementById('updated').innerHTML = en
+    ? '<strong>Last Updated:</strong> September 12, 2026'
+    : '<strong>Son Güncelleme:</strong> 12 Eylül 2026';
+  document.getElementById('notice').textContent = en
+    ? 'Sweet Merge may include advertising, in-app purchases and analytics. The exact third-party providers used by the current version of the game should also be reflected in the Google Play Data Safety form.'
+    : 'Sweet Merge reklam, uygulama içi satın alım ve analitik sistemleri içerebilir. Oyunun güncel sürümünde kullanılan üçüncü taraf sağlayıcılar Google Play Veri Güvenliği formunda da aynı şekilde beyan edilmelidir.';
+  document.getElementById('back-link').textContent = en ? '← Home' : '← Ana Sayfa';
+}
+</script>
+</body>
+</html>
